@@ -52,10 +52,11 @@ class TransactionController extends Controller
         if(!$deposit)
             $deposit = Deposit::create(["user_id" => $request->user_id]);
         
+        $request['saldo'] = $deposit->nominal + $request->nominal;
         $request['type'] = "deposit";
         $trans = $deposit->transactions()->create($request->all());
 
-        $deposit->update(["nominal" => $deposit->nominal + $trans->nominal]);
+        $deposit->update(["nominal" => $request->saldo]);
         if ($deposit)
             return view('layout');
         $users = User::orderBy('name')->get();
@@ -84,10 +85,11 @@ class TransactionController extends Controller
         ]);
 
         $request['nominal'] = -$request->nominal;
+        $request['saldo'] = $deposit->nominal + $request->nominal;
         $request['type'] = "withdraw";
         $withdraw = $deposit->transactions()->create($request->all());
 
-        $deposit->update(['nominal' => $deposit->nominal + $request->nominal]);
+        $deposit->update(['nominal' => $request->saldo]);
         if ($withdraw)
             return view('layout');
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2019 at 10:28 AM
+-- Generation Time: Sep 30, 2019 at 11:17 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -41,7 +41,7 @@ CREATE TABLE `deposits` (
 --
 
 INSERT INTO `deposits` (`id`, `user_id`, `nominal`, `created_at`, `updated_at`) VALUES
-(1, 1, 129200, '2019-09-25 00:59:49', '2019-09-30 01:12:53');
+(1, 1, 7420, '2019-09-30 02:14:10', '2019-09-30 02:14:49');
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE `interests` (
 --
 
 INSERT INTO `interests` (`id`, `deposit_id`, `nominal`, `created_at`, `updated_at`) VALUES
-(1, 1, 1200, '2019-09-30 01:12:53', '2019-09-30 01:12:53');
+(1, 1, 420, '2019-09-30 02:14:49', '2019-09-30 02:14:49');
 
 -- --------------------------------------------------------
 
@@ -110,6 +110,7 @@ CREATE TABLE `transactions` (
   `nominal` bigint(20) NOT NULL,
   `deposit_id` int(10) UNSIGNED NOT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `saldo` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -118,12 +119,10 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `nominal`, `deposit_id`, `type`, `created_at`, `updated_at`) VALUES
-(1, 20000, 1, 'deposit', '2019-09-25 00:59:49', '2019-09-25 00:59:49'),
-(2, 100000, 1, 'deposit', '2019-09-25 01:07:13', '2019-09-25 01:07:13'),
-(3, -2000, 1, 'withdraw', '2019-09-25 01:07:25', '2019-09-25 01:07:25'),
-(4, 20000, 1, 'deposit', '2019-09-25 01:11:48', '2019-09-25 01:11:48'),
-(5, -10000, 1, 'withdraw', '2019-09-25 01:12:17', '2019-09-25 01:12:17');
+INSERT INTO `transactions` (`id`, `nominal`, `deposit_id`, `type`, `saldo`, `created_at`, `updated_at`) VALUES
+(1, 10000, 1, 'deposit', 10000, '2019-09-30 02:14:10', '2019-09-30 02:14:10'),
+(2, 2000, 1, 'deposit', 12000, '2019-09-30 02:14:20', '2019-09-30 02:14:20'),
+(3, -5000, 1, 'withdraw', 7000, '2019-09-30 02:14:42', '2019-09-30 02:14:42');
 
 -- --------------------------------------------------------
 
@@ -216,7 +215,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

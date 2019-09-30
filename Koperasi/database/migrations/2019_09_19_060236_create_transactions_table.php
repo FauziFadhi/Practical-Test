@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('nominal');
             $table->unsignedInteger('deposit_id');
             $table->string('type');
+            $table->bigInteger('saldo');
             $table->timestamps();
         });
     }

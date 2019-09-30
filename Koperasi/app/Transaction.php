@@ -11,5 +11,5 @@ class Transaction extends Model
      *
      * @var array
      */
-    protected $fillable = ['deposit_id','nominal','type'];
+    protected $fillable = ['deposit_id','nominal','type','saldo'];
 }

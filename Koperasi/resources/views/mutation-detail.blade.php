@@ -14,20 +14,20 @@
             <th>
                 Nominal
             </th>
+            <th>
+                Saldo Akhir
+            </th>
         </thead>
         <tbody>
             @foreach ($deposit->transactions()->orderBy('created_at','desc')->get() as $trans)
                 <tr>
                 <td>{{$trans->created_at}}</td>
                 <td>{{$trans->nominal}}</td>
+                <td>{{$trans->saldo}}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="form-group">
-       <label>Saldo</label>
-    <span>{{$deposit->nominal}}</span>
-    </div>
     <div class="form-group">
             <label>Bunga</label>
          <span>

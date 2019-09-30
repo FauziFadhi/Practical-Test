@@ -55,7 +55,7 @@ class DepositController extends Controller
         $deposit = Deposit::find($id);
 
         if(Carbon::now()->toDateString() === $date && !($deposit->interests()->whereMonth('created_at',Carbon::now()->month)->first())){
-            $nominal = $deposit->transactions()->whereMonth('created_at',Carbon::now()->month)->where('nominal','>','0')->min('nominal')*0.06;
+            $nominal = $deposit->transactions()->whereMonth('created_at',Carbon::now()->month)->min('saldo')*0.06;
             $deposit->interests()->create(['nominal' => $nominal]);
             $deposit->update(['nominal' => $deposit->nominal+$nominal]);
         }
